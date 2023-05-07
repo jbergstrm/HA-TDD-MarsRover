@@ -163,4 +163,11 @@ public class MarsRoverTests {
         rover.move(List.of(Command.FORWARD, Command.FORWARD, Command.RIGHT, Command.FORWARD, Command.LEFT, Command.BACKWARD));
         Assertions.assertEquals(new Point2d(1, Grid.MAX), rover.getCurrentPosition());
     }
+
+    @Test
+    public void testMoveUntilObstacleAndStop() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(Grid.MIN, Grid.MIN), Direction.SOUTH);
+        rover.move(List.of(Command.FORWARD, Command.FORWARD, Command.LEFT, Command.FORWARD, Command.FORWARD, Command.FORWARD));
+        Assertions.assertEquals(new Point2d(1, 2), rover.getCurrentPosition());
+    }
 }

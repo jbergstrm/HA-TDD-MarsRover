@@ -1,7 +1,10 @@
 import java.util.List;
 
 public interface MarsRover {
-    void move(Command command);
+    /**
+     * @return True if move was successful
+     */
+    boolean move(Command command);
     void move(List<Command> commands);
     Point2d getCurrentPosition();
     Direction getCurrentDirection();

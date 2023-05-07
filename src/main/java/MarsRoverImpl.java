@@ -20,20 +20,23 @@ public class MarsRoverImpl implements MarsRover {
     }
 
     @Override
-    public void move(Command command){
-        switch (command) {
+    public boolean move(Command command) {
+        return switch (command) {
             case FORWARD, BACKWARD -> {
-                currentPoint = Engine.move(command, currentPoint, currentDirection);
+                final Point2d nextPoint = Engine.move(command, currentPoint, currentDirection);
+                yield !Grid.isObstacle(nextPoint) && (currentPoint = nextPoint) != null;
             }
             case LEFT, RIGHT -> {
                 currentDirection = Engine.rotate(command, currentDirection);
+                yield true;
             }
-        }
+        };
     }
 
     @Override
     public void move(List<Command> commands) {
-        commands.forEach(this::move);
+        // If move returns false this loop stop and returns.
+        commands.stream().anyMatch(command -> !move(command));
     }
 
     @Override
