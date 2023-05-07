@@ -11,6 +11,12 @@ public class MarsRoverTests {
     }
 
     @Test
+    public void testAssigningInitialStartDirection() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.NORTH);
+        Assertions.assertEquals(Direction.NORTH, rover.getInitialDirection());
+    }
+
+    @Test
     @Disabled
     public void testMoveForwardOneTimeLeftEdgeToRightEdge() {
 

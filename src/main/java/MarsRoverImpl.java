@@ -1,9 +1,11 @@
 public class MarsRoverImpl implements MarsRover {
 
     private final Point2d startingPoint;
+    private final Direction startingDirection;
 
     public MarsRoverImpl(final Point2d startingPoint, final Direction startingDirection){
         this.startingPoint = startingPoint;
+        this.startingDirection = startingDirection;
     }
 
     @Override
@@ -20,5 +22,10 @@ public class MarsRoverImpl implements MarsRover {
     @Override
     public Point2d getInitialPosition() {
         return startingPoint;
+    }
+
+    @Override
+    public Direction getInitialDirection() {
+        return startingDirection;
     }
 }
