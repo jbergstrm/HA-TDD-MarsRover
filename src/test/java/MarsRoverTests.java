@@ -45,6 +45,34 @@ public class MarsRoverTests {
     }
 
     @Test
+    public void testMoveBackwardOneTimeDirectionNorth() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.NORTH);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(0, 1), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveBackwardOneTimeDirectionEast() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(1, 0), Direction.EAST);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(0, 0), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveBackwardOneTimeDirectionSouth() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 1), Direction.SOUTH);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(0, 0), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveBackwardOneTimeDirectionWest() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.WEST);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(1, 0), rover.getCurrentPosition());
+    }
+
+    @Test
     @Disabled
     public void testMoveForwardOneTimeLeftEdgeToRightEdge() {
 

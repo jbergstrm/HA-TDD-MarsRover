@@ -15,8 +15,13 @@ public class MarsRoverImpl implements MarsRover {
 
     @Override
     public void move(Command command){
-        if (Command.FORWARD.equals(command)) {
-            forward(startingDirection);
+        switch (command) {
+            case FORWARD -> {
+                forward(startingDirection);
+            }
+            case BACKWARD -> {
+                backward(startingDirection);
+            }
         }
     }
 
@@ -48,6 +53,23 @@ public class MarsRoverImpl implements MarsRover {
             }
             case WEST -> {
                 currentPoint = new Point2d(startingPoint.x() - 1, startingPoint.y());
+            }
+        }
+    }
+
+    private void backward(final Direction direction) {
+        switch (direction) {
+            case NORTH -> {
+                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() + 1);
+            }
+            case EAST -> {
+                currentPoint = new Point2d(startingPoint.x() - 1, startingPoint.y());
+            }
+            case SOUTH -> {
+                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() - 1);
+            }
+            case WEST -> {
+                currentPoint = new Point2d(startingPoint.x() + 1, startingPoint.y());
             }
         }
     }
