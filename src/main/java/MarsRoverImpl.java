@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class MarsRoverImpl implements MarsRover {
 
     private final Point2d startingPoint;
@@ -21,12 +23,17 @@ public class MarsRoverImpl implements MarsRover {
     public void move(Command command){
         switch (command) {
             case FORWARD, BACKWARD -> {
-                currentPoint = Engine.move(command, startingPoint, startingDirection);
+                currentPoint = Engine.move(command, currentPoint, currentDirection);
             }
             case LEFT, RIGHT -> {
-                currentDirection = Engine.rotate(command, startingDirection);
+                currentDirection = Engine.rotate(command, currentDirection);
             }
         }
+    }
+
+    @Override
+    public void move(List<Command> commands) {
+        commands.forEach(this::move);
     }
 
     @Override

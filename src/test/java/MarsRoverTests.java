@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class MarsRoverTests {
 
     @Test
@@ -153,5 +155,12 @@ public class MarsRoverTests {
         final MarsRover rover = new MarsRoverImpl(new Point2d(3, 5), Direction.NORTH);
         rover.move(Command.BACKWARD);
         Assertions.assertEquals(new Point2d(3, 0), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveWithMultipleCommands() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.NORTH);
+        rover.move(List.of(Command.FORWARD, Command.FORWARD, Command.RIGHT, Command.FORWARD, Command.LEFT, Command.BACKWARD));
+        Assertions.assertEquals(new Point2d(1, 5), rover.getCurrentPosition());
     }
 }
