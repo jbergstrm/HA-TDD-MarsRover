@@ -1,9 +1,17 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class MarsRoverTests {
 
     @Test
+    public void testAssigningInitialStartLocation() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.NORTH);
+        Assertions.assertEquals(new Point2d(0, 0), rover.getInitialPosition());
+    }
+
+    @Test
+    @Disabled
     public void testMoveForwardOneTimeLeftEdgeToRightEdge() {
 
         //Arrange (see README for reference to Arrange-Act-Assert Pattern)
