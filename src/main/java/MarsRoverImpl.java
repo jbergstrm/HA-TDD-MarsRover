@@ -29,6 +29,9 @@ public class MarsRoverImpl implements MarsRover {
             case LEFT -> {
                 left(startingDirection);
             }
+            case RIGHT -> {
+                right(startingDirection);
+            }
         }
     }
 
@@ -99,6 +102,23 @@ public class MarsRoverImpl implements MarsRover {
             }
             case WEST -> {
                 currentDirection = Direction.SOUTH;
+            }
+        }
+    }
+
+    private void right(final Direction direction) {
+        switch (direction) {
+            case NORTH -> {
+                currentDirection = Direction.EAST;
+            }
+            case EAST -> {
+                currentDirection = Direction.SOUTH;
+            }
+            case SOUTH -> {
+                currentDirection = Direction.WEST;
+            }
+            case WEST -> {
+                currentDirection = Direction.NORTH;
             }
         }
     }

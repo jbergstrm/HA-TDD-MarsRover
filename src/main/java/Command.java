@@ -7,7 +7,8 @@ public enum Command {
 
     FORWARD("f"),
     BACKWARD("b"),
-    LEFT("l");
+    LEFT("l"),
+    RIGHT("r");
 
     private final String value;
 
