@@ -20,17 +20,11 @@ public class MarsRoverImpl implements MarsRover {
     @Override
     public void move(Command command){
         switch (command) {
-            case FORWARD -> {
-                forward(startingDirection);
+            case FORWARD, BACKWARD -> {
+                currentPoint = Engine.move(command, startingPoint, startingDirection);
             }
-            case BACKWARD -> {
-                backward(startingDirection);
-            }
-            case LEFT -> {
-                left(startingDirection);
-            }
-            case RIGHT -> {
-                right(startingDirection);
+            case LEFT, RIGHT -> {
+                currentDirection = Engine.rotate(command, startingDirection);
             }
         }
     }
@@ -53,73 +47,5 @@ public class MarsRoverImpl implements MarsRover {
     @Override
     public Direction getInitialDirection() {
         return startingDirection;
-    }
-
-    private void forward(final Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() - 1);
-            }
-            case EAST -> {
-                currentPoint = new Point2d(startingPoint.x() + 1, startingPoint.y());
-            }
-            case SOUTH -> {
-                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() + 1);
-            }
-            case WEST -> {
-                currentPoint = new Point2d(startingPoint.x() - 1, startingPoint.y());
-            }
-        }
-    }
-
-    private void backward(final Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() + 1);
-            }
-            case EAST -> {
-                currentPoint = new Point2d(startingPoint.x() - 1, startingPoint.y());
-            }
-            case SOUTH -> {
-                currentPoint = new Point2d(startingPoint.x(), startingPoint.y() - 1);
-            }
-            case WEST -> {
-                currentPoint = new Point2d(startingPoint.x() + 1, startingPoint.y());
-            }
-        }
-    }
-
-    private void left(final Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                currentDirection = Direction.WEST;
-            }
-            case EAST -> {
-                currentDirection = Direction.NORTH;
-            }
-            case SOUTH -> {
-                currentDirection = Direction.EAST;
-            }
-            case WEST -> {
-                currentDirection = Direction.SOUTH;
-            }
-        }
-    }
-
-    private void right(final Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                currentDirection = Direction.EAST;
-            }
-            case EAST -> {
-                currentDirection = Direction.SOUTH;
-            }
-            case SOUTH -> {
-                currentDirection = Direction.WEST;
-            }
-            case WEST -> {
-                currentDirection = Direction.NORTH;
-            }
-        }
     }
 }
