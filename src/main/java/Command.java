@@ -6,7 +6,8 @@
 public enum Command {
 
     FORWARD("f"),
-    BACKWARD("b");
+    BACKWARD("b"),
+    LEFT("l");
 
     private final String value;
 

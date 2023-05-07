@@ -4,6 +4,7 @@ public class MarsRoverImpl implements MarsRover {
     private final Direction startingDirection;
 
     private Point2d currentPoint;
+    private Direction currentDirection;
 
     public MarsRoverImpl(final Point2d startingPoint, final Direction startingDirection){
         this.startingPoint = startingPoint;
@@ -11,6 +12,9 @@ public class MarsRoverImpl implements MarsRover {
 
         // Current point in the start always equals starting point
         this.currentPoint = this.startingPoint;
+
+        // Current direction in the start always equals starting direction
+        this.currentDirection = this.startingDirection;
     }
 
     @Override
@@ -22,12 +26,20 @@ public class MarsRoverImpl implements MarsRover {
             case BACKWARD -> {
                 backward(startingDirection);
             }
+            case LEFT -> {
+                left(startingDirection);
+            }
         }
     }
 
     @Override
     public Point2d getCurrentPosition() {
         return currentPoint;
+    }
+
+    @Override
+    public Direction getCurrentDirection() {
+        return currentDirection;
     }
 
     @Override
@@ -70,6 +82,23 @@ public class MarsRoverImpl implements MarsRover {
             }
             case WEST -> {
                 currentPoint = new Point2d(startingPoint.x() + 1, startingPoint.y());
+            }
+        }
+    }
+
+    private void left(final Direction direction) {
+        switch (direction) {
+            case NORTH -> {
+                currentDirection = Direction.WEST;
+            }
+            case EAST -> {
+                currentDirection = Direction.NORTH;
+            }
+            case SOUTH -> {
+                currentDirection = Direction.EAST;
+            }
+            case WEST -> {
+                currentDirection = Direction.SOUTH;
             }
         }
     }
