@@ -131,36 +131,36 @@ public class MarsRoverTests {
 
     @Test
     public void testMoveForwardOneTimeLeftEdgeToRightEdge() {
-        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 3), Direction.WEST);
+        final MarsRover rover = new MarsRoverImpl(new Point2d(Grid.MIN, 3), Direction.WEST);
         rover.move(Command.FORWARD);
-        Assertions.assertEquals(new Point2d(5, 3), rover.getCurrentPosition());
+        Assertions.assertEquals(new Point2d(Grid.MAX, 3), rover.getCurrentPosition());
     }
 
     @Test
     public void testMoveForwardOneTimeTopEdgeToBottomEdge() {
-        final MarsRover rover = new MarsRoverImpl(new Point2d(3, 0), Direction.NORTH);
+        final MarsRover rover = new MarsRoverImpl(new Point2d(3, Grid.MIN), Direction.NORTH);
         rover.move(Command.FORWARD);
-        Assertions.assertEquals(new Point2d(3, 5), rover.getCurrentPosition());
+        Assertions.assertEquals(new Point2d(3, Grid.MAX), rover.getCurrentPosition());
     }
 
     @Test
     public void testMoveBackwardOneTimeLeftEdgeToRightEdge() {
-        final MarsRover rover = new MarsRoverImpl(new Point2d(5, 3), Direction.WEST);
+        final MarsRover rover = new MarsRoverImpl(new Point2d(Grid.MAX, 3), Direction.WEST);
         rover.move(Command.BACKWARD);
-        Assertions.assertEquals(new Point2d(0, 3), rover.getCurrentPosition());
+        Assertions.assertEquals(new Point2d(Grid.MIN, 3), rover.getCurrentPosition());
     }
 
     @Test
     public void testMoveBackwardOneTimeTopEdgeToBottomEdge() {
-        final MarsRover rover = new MarsRoverImpl(new Point2d(3, 5), Direction.NORTH);
+        final MarsRover rover = new MarsRoverImpl(new Point2d(3, Grid.MAX), Direction.NORTH);
         rover.move(Command.BACKWARD);
-        Assertions.assertEquals(new Point2d(3, 0), rover.getCurrentPosition());
+        Assertions.assertEquals(new Point2d(3, Grid.MIN), rover.getCurrentPosition());
     }
 
     @Test
     public void testMoveWithMultipleCommands() {
-        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 0), Direction.NORTH);
+        final MarsRover rover = new MarsRoverImpl(new Point2d(Grid.MIN, Grid.MIN), Direction.NORTH);
         rover.move(List.of(Command.FORWARD, Command.FORWARD, Command.RIGHT, Command.FORWARD, Command.LEFT, Command.BACKWARD));
-        Assertions.assertEquals(new Point2d(1, 5), rover.getCurrentPosition());
+        Assertions.assertEquals(new Point2d(1, Grid.MAX), rover.getCurrentPosition());
     }
 }
