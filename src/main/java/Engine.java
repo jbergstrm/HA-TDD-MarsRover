@@ -27,19 +27,19 @@ public class Engine {
 
     private static Point2d forward(final Point2d startPoint, final Direction direction) {
         return switch (direction) {
-            case NORTH -> new Point2d(startPoint.x(), startPoint.y() - 1);
-            case EAST -> new Point2d(startPoint.x() + 1, startPoint.y());
-            case SOUTH -> new Point2d(startPoint.x(), startPoint.y() + 1);
-            case WEST -> new Point2d(startPoint.x() - 1, startPoint.y());
+            case NORTH -> new Point2d(startPoint.x(), Grid.isMin(startPoint.y()) ? Grid.MAX : startPoint.y() - 1);
+            case EAST -> new Point2d(Grid.isMax(startPoint.x()) ? Grid.MIN : startPoint.x() + 1, startPoint.y());
+            case SOUTH -> new Point2d(startPoint.x(), Grid.isMax(startPoint.y()) ? Grid.MIN : startPoint.y() + 1);
+            case WEST -> new Point2d(Grid.isMin(startPoint.x()) ? Grid.MAX : startPoint.x() - 1, startPoint.y());
         };
     }
 
     private static Point2d backward(final Point2d startPoint, final Direction direction) {
         return switch (direction) {
-            case NORTH -> new Point2d(startPoint.x(), startPoint.y() + 1);
-            case EAST -> new Point2d(startPoint.x() - 1, startPoint.y());
-            case SOUTH -> new Point2d(startPoint.x(), startPoint.y() - 1);
-            case WEST -> new Point2d(startPoint.x() + 1, startPoint.y());
+            case NORTH -> new Point2d(startPoint.x(), Grid.isMax(startPoint.y()) ? Grid.MIN : startPoint.y() + 1);
+            case EAST -> new Point2d(Grid.isMin(startPoint.x()) ? Grid.MAX : startPoint.x() - 1, startPoint.y());
+            case SOUTH -> new Point2d(startPoint.x(), Grid.isMin(startPoint.y()) ? Grid.MAX : startPoint.y() - 1);
+            case WEST -> new Point2d(Grid.isMax(startPoint.x()) ? Grid.MIN : startPoint.x() + 1, startPoint.y());
         };
     }
 

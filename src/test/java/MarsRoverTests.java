@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class MarsRoverTests {
@@ -129,16 +128,30 @@ public class MarsRoverTests {
     }
 
     @Test
-    @Disabled
     public void testMoveForwardOneTimeLeftEdgeToRightEdge() {
-
-        //Arrange (see README for reference to Arrange-Act-Assert Pattern)
-        MarsRover rover = new MarsRoverImpl(new Point2d(0, 3), Direction.WEST);
-
-        //Act
+        final MarsRover rover = new MarsRoverImpl(new Point2d(0, 3), Direction.WEST);
         rover.move(Command.FORWARD);
-
-        //Assert
         Assertions.assertEquals(new Point2d(5, 3), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveForwardOneTimeTopEdgeToBottomEdge() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(3, 0), Direction.NORTH);
+        rover.move(Command.FORWARD);
+        Assertions.assertEquals(new Point2d(3, 5), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveBackwardOneTimeLeftEdgeToRightEdge() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(5, 3), Direction.WEST);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(0, 3), rover.getCurrentPosition());
+    }
+
+    @Test
+    public void testMoveBackwardOneTimeTopEdgeToBottomEdge() {
+        final MarsRover rover = new MarsRoverImpl(new Point2d(3, 5), Direction.NORTH);
+        rover.move(Command.BACKWARD);
+        Assertions.assertEquals(new Point2d(3, 0), rover.getCurrentPosition());
     }
 }
